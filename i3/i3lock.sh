@@ -8,7 +8,7 @@ tmpbg='/tmp/screen.png'
 scrot "$tmpbg"
 convert "$tmpbg" -blur 0x3 "$tmpbg"
 
-if [ -f $HOME/.xlock/icon.png ]
+if [ -f $HOME/.config/i3/lock.png ]
 then
     # placement x/y
     PX=0

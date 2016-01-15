@@ -29,7 +29,7 @@ assign [class="(?i)thunderbird"] $ws9
 assign [class="(?i)phpstorm"] $ws0
 
 # Font
-font pango:SFNS Display 10
+font pango:hack 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
