@@ -31,8 +31,8 @@ markup=pango
 full_text=
 align=center
 color=#F5FFFA
-separator=false
-separator_block_width=3
+separator=true
+separator_block_width=20
 
 
 # Volume indicator
@@ -81,10 +81,10 @@ interval=30
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
+#[iface]
 #instance=wlan0
-color=#00FF00
-interval=10
+#color=#00FF00
+#interval=10
 #separator=false
 
 #[wifi]
@@ -92,9 +92,9 @@ interval=10
 #interval=10
 #separator=false
 
-[bandwidth]
+#[bandwidth]
 #instance=eth0
-interval=5
+#interval=5
 
 # CPU usage
 #
@@ -106,21 +106,27 @@ interval=5
 #min_width=CPU: 100.00%
 #separator=false
 
-[load_average]
-label=LOAD
-interval=10
+#[load_average]
+#label=LOAD
+#interval=10
 
 # Battery indicator
 #
 # The battery instance defaults to 0.
-[battery]
-label=BAT
+#[battery]
+#label=BAT
 #label=⚡
 #instance=1
-interval=30
+#interval=30
+
+[music]
+command=php /home/tim/.config/i3blocks/spotify.php
+interval=5
 
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%Y-%m-%d %H:%M'
 interval=5
+
+

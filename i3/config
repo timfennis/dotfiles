@@ -177,9 +177,12 @@ client.urgent                 $red     $red       $text            $red
 client.background             $bgcolor
 
 # Gaps
-gaps inner 10
+gaps inner 0
 gaps outer 0
 #for_window [class="^.*"] border pixel 0
+for_window [class="(?i)gitg"] floating enable;
+for_window [class="(?i)gitg"] resize set 1500 900;
+for_window [class="(?i)gitg"] move position 2130 90;
 
 # Monitor setup
 exec --no-startup-id xrandr --output HDMI-0 --primary --left-of DVI-I-1
