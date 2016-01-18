@@ -1,10 +1,10 @@
 [global_config]
-  title_transmit_fg_color = "#d1e0d7"
-  title_inactive_fg_color = "#2d2926"
-  borderless = True
   title_transmit_bg_color = "#13322b"
+  title_inactive_fg_color = "#2d2926"
   inactive_color_offset = 0.85
+  title_transmit_fg_color = "#d1e0d7"
   title_inactive_bg_color = "#d7d7d7"
+  borderless=false
   scrollbar_position=hidden
 [keybindings]
 [profiles]
