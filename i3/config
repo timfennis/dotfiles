@@ -158,7 +158,7 @@ set $green #00ff00
 # finds out, if available)
 bar {
         status_command i3blocks
-        tray_output primary
+        tray_output none
         strip_workspace_numbers yes
         colors {
                 background $bgcolor
@@ -168,6 +168,15 @@ bar {
                 inactive_workspace $bgcolor           $bgcolor           $inactive-text
                 urgent_workspace   #ff0000            #ff0000            $text
         }
+#        colors {
+#                background $bgcolor
+#                statusline #556270
+#                # colors                outline          background     number
+#                focused_workspace       #191919          #191919        #4ECDC4
+#                active_workspace        #191919          #191919        #4ECDC4
+#                inactive_workspace      #191919          #191919        #C44D58
+#                urgent_workspace        #191919          #191919        #C7F464
+#        }
 }
 
 # Layout colors               bord     bg         text             indicator (split)
@@ -210,4 +219,3 @@ bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/scre
 
 #focus_follows_mouse no
 focus_follows_mouse no
-
