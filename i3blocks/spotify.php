@@ -23,5 +23,8 @@ $artist = $matches[1];
 preg_match("#xesam:title\"\s*variant\s*string\s*\"([^\"]*)\"#", $output, $matches);
 $title = $matches[1];
 
+$title = str_replace('&', 'and', $title);
+$artist = str_replace('&', 'and', $artist);
+
 echo "$artist - $title";
 // var_dump($output);
