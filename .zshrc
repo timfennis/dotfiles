@@ -113,9 +113,28 @@ alias gpr="git pull --rebase origin"
 alias gpf="git push -f origin"
 alias ghci="docker run -it haskell"
 
-function node-sh() {
-    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "node:${1:-latest}" bash
+node-sh() {
+  local version="latest"
+  local docker_image="node:${version}"
+
+  while getopts ":v:" opt; do
+    case $opt in
+      v) docker_image="node:${OPTARG}" ;;
+      \?) echo "Invalid option: -$OPTARG" >&2 ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
+  if [[ $# -eq 0 ]]; then
+    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "$docker_image" bash
+  else
+    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "$docker_image" "$@"
+  fi
 }
+
+alias ns=node-sh
+
 
 function php() {
     docker run -u 1000:1000 -v $(pwd):/app -w /app -it php:8.2 bash -f $1
