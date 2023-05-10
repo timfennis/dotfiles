@@ -92,15 +92,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
@@ -134,11 +125,6 @@ node-sh() {
 }
 
 alias ns=node-sh
-
-
-function php() {
-    docker run -u 1000:1000 -v $(pwd):/app -w /app -it php:8.2 bash -f $1
-}
 
 function youtube-dl() {
     docker run -w /app -v $(pwd):/app -it --user 1000:1000 vimagick/youtube-dl $@
