@@ -114,11 +114,11 @@ alias gpf="git push -f origin"
 alias ghci="docker run -it haskell"
 
 function node-sh() {
-    docker run -u 1000:1000 -v $(pwd):/app -w /app -it node:18 bash
+    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "node:${1:-latest}" bash
 }
 
 function php() {
-    docker run -u 1000:1000 -v $(pwd):/app -w /app -it php:8.2 bash
+    docker run -u 1000:1000 -v $(pwd):/app -w /app -it php:8.2 bash -f $1
 }
 
 function youtube-dl() {
