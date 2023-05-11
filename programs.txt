@@ -1,2 +1,3 @@
-alacritty
-zsh
+alacritty # terminal emulator
+zsh # shell
+polybar # status bar (replaces i3status)

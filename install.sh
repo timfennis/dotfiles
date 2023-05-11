@@ -8,9 +8,6 @@ ln -sf ~/.dotfiles/.vimrc .vimrc
 ln -sf ~/.dotfiles/.vimrc .ideavimrc
 ln -sf ~/.dotfiles/.Xresources .Xresources
 
-mkdir -p .config/i3/ && \
-    ln -sf ~/.dotfiles/i3/config .config/i3/config
-
-mkdir -p .config/alacritty/ && \
-    ln -sf ~/.dotfiles/alacritty/alacritty.yml .config/alacritty/alacritty.yml
-
+ln -sf ~/.dotfiles/i3/ .config/
+ln -sf ~/.dotfiles/alacritty/ .config/
+ln -sf ~/.dotfiles/polybar/ .config/
