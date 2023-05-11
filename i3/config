@@ -15,7 +15,8 @@ set $mod Mod4
 # is used in the bar {} block below.
 font xft:Hack 10
 
-default_border pixel 4
+default_border normal
+for_window [class="Alacritty"] border pixel 2
 hide_edge_borders none
 smart_borders on
 
@@ -221,7 +222,7 @@ bar {
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border      BG          Text        Indicator   Child Border
 client.background	    $background
-client.focused         	$foreground	$background	$foreground	$color4	    $color4
+client.focused         	$foreground	$color4	    $background	$color4	    $color4
 client.unfocused       	$foreground	$background	$foreground	$color7	    $color7
 client.focused_inactive	$foreground	$background	$foreground	$color7	    $color7
 client.urgent		    $foreground	$background	$foreground	$color7	    $color7
