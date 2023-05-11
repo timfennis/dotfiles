@@ -208,8 +208,8 @@ bar {
 
     colors {
         background $background
-        separator  $foreground
-        statusline $color4
+        separator  $color4
+        statusline $foreground
 
         focused_workspace  $color4 $color4 $background
         active_workspace   $color7 $color7 $foreground
