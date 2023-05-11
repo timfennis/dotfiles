@@ -78,32 +78,21 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-export VISUAL=vim
+# Some programs may use these variables to figure out what editor to use
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# SSH_AUTH_SOCK stuff.. is this still needed?
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+# Aliasses for various applications or commands running in docker
 alias k=kubectl
 alias noswifi="nmcli --ask device wifi connect \"NOS_InternetOnly\""
 alias dc=docker-compose
-alias gff="git pull --ff-only origin"
-alias gpr="git pull --rebase origin"
-alias gpf="git push -f origin"
 alias ghci="docker run -it haskell"
+alias vim="nvim"
 
+# Run nodejs inside docker as if it was installed on your machine
 node-sh() {
   local version="latest"
   local docker_image="node:${version}"
@@ -118,22 +107,20 @@ node-sh() {
   shift $((OPTIND - 1))
 
   if [[ $# -eq 0 ]]; then
-    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "$docker_image" bash
+    docker run -u 1000:1000 -p 3000:3000 -v "$(pwd):/app" -w /app -it "$docker_image" bash
   else
-    docker run -u 1000:1000 -v "$(pwd):/app" -w /app -it "$docker_image" "$@"
+    docker run -u 1000:1000 -p 3000:3000 -v "$(pwd):/app" -w /app -it "$docker_image" "$@"
   fi
 }
 
 alias ns=node-sh
 
-function youtube-dl() {
-    docker run -w /app -v $(pwd):/app -it --user 1000:1000 vimagick/youtube-dl $@
-}
+# Run gitleaks in docker 
 function gitleaks() {
-    echo $@;
     docker run -v $(pwd):/data zricethezav/gitleaks $@
 }
 
+# These functions are for quick switching between main and external displays on the framework laptop
 function edp() {
     xrandr --output DP1 --auto && xrandr --output eDP1 --off
     bash /home/tim/.fehbg
@@ -144,6 +131,7 @@ function mdp() {
     bash /home/tim/.fehbg
 }
 
+# Git aliasses
 unalias gpf
 gpf () {
     local current_branch=$(git branch --show-current)
@@ -151,5 +139,12 @@ gpf () {
     echo "Pushing branch: $branch"
     git push --force origin $branch
 }
+alias gff="git pull --ff-only origin"
+alias gpr="git pull --rebase origin"
+alias gpf="git push -f origin"
 
-eval `keychain --eval --agents ssh id_nos`
+# Run Keychain when it's installed (currently only for the laptop)
+if command -v keychain >/dev/null 2>&1; then
+    eval `keychain --eval --agents ssh id_nos`
+fi
+
