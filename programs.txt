@@ -1,3 +1,4 @@
-alacritty # terminal emulator
-zsh # shell
-polybar # status bar (replaces i3status)
+alacritty 			# terminal emulator
+zsh 			 	# shell
+polybar 		 	# status bar (replaces i3status)
+	ttf-font-awesome 	# battery font
