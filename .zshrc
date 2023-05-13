@@ -93,24 +93,31 @@ alias ghci="docker run -it haskell"
 alias vim="nvim"
 
 # Run nodejs inside docker as if it was installed on your machine
-node-sh() {
-  local version="latest"
-  local docker_image="node:${version}"
+function node-sh() {
+  local TAG=latest
+  local PORTS=()
 
-  while getopts ":v:" opt; do
-    case $opt in
-      v) docker_image="node:${OPTARG}" ;;
-      \?) echo "Invalid option: -$OPTARG" >&2 ;;
+  while getopts ":p:v:" OPTION; do
+    case "$OPTION" in
+      p)
+	PORTS+=(-p "$OPTARG")
+	;;
+      v)
+	TAG="$OPTARG"
+	;;
     esac
   done
 
   shift $((OPTIND - 1))
 
-  if [[ $# -eq 0 ]]; then
-    docker run -u 1000:1000 -p 3000:3000 -v "$(pwd):/app" -w /app -it "$docker_image" bash
-  else
-    docker run -u 1000:1000 -p 3000:3000 -v "$(pwd):/app" -w /app -it "$docker_image" "$@"
-  fi
+  docker run \
+	  --rm \
+	  -u 1000:1000 \
+	  -it --pull always \
+	  "${PORTS[@]}" \
+	  -v "$(pwd):/app" \
+	  -w "/app" \
+	  "node:$TAG" ${@:-bash} 
 }
 
 alias ns=node-sh
