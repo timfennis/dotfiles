@@ -1,0 +1,4 @@
+# Step 1: install plug
+# Step 2: run :PlugInstall
+# Step 3: Install the rust language server
+rustup component add rust-analyzer
