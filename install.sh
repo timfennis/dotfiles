@@ -48,9 +48,9 @@ ln -sf ~/.dotfiles/nvim/ .config/
 
 # Some applications need a different config on a different machine those are handled 
 # down here
-if [ "$hostname" = "fwarch" ]; then
+if [ "$(hostname)" = "fwarch" ]; then
     echo -e "Using ${bold}fw-alacritty/${reset} because we're on the framework laptop."
-    ln -sf ~/.dotfiles/fw-alacritty/ .config/
+    ln -sf ~/.dotfiles/fw-alacritty/ .config/alacritty
 else
     echo -e "Using ${bold}alacritty/${reset} because we're on a normal machine."
     ln -sf ~/.dotfiles/alacritty/ .config/
