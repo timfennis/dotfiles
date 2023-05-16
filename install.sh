@@ -50,13 +50,8 @@ ln -sf ~/.dotfiles/nvim/ .config/
 # down here
 if [ "$(hostname)" = "fwarch" ]; then
     echo -e "Using ${bold}fw-alacritty/${reset} because we're on the framework laptop."
-    if [[ -L .config/alacritty ]]; then
-        echo "Symlink already exists."
-    else
-        ln -sf ~/.dotfiles/fw-alacritty/ .config/alacritty
-        echo "Symlink created."
-    fi
+    ln -sfT ~/.dotfiles/fw-alacritty/ .config/alacritty
 else
     echo -e "Using ${bold}alacritty/${reset} because we're on a normal machine."
-    ln -sf ~/.dotfiles/alacritty/ .config/
+    ln -sfT ~/.dotfiles/alacritty/ .config/
 fi
