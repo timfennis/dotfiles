@@ -148,7 +148,6 @@ gpf () {
 }
 alias gff="git pull --ff-only origin"
 alias gpr="git pull --rebase origin"
-alias gpf="git push -f origin"
 
 # Put the line below in ~/.zshrc:
 #
