@@ -8,7 +8,7 @@ bold="\e[1m"
 reset="\e[0m"
 
 # First run some checks and see if the programs that we rely on are installed
-programs=("zsh" "nvim" "alacritty" "i3" "polybar")
+programs=("zsh" "nvim" "alacritty" "i3" "polybar" "fzf")
 packages=("ttf-font-awesome")
 
 for program in "${programs[@]}"; do

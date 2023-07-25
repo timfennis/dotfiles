@@ -85,6 +85,9 @@ export EDITOR="$VISUAL"
 # SSH_AUTH_SOCK stuff.. is this still needed?
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+# Enable sparse registry for cargo
+export CARGO_UNSTABLE_SPARSE_REGISTRY=true
+
 # Aliasses for various applications or commands running in docker
 alias k=kubectl
 alias noswifi="nmcli --ask device wifi connect \"NOS_InternetOnly\""
@@ -113,6 +116,7 @@ function node-sh() {
   docker run \
 	  --rm \
 	  -u 1000:1000 \
+      --net="host" \
 	  -it --pull always \
 	  "${PORTS[@]}" \
 	  -v "$(pwd):/app" \
@@ -175,5 +179,7 @@ compctl -U -K jump_completion j
 if command -v keychain >/dev/null 2>&1; then
     eval `keychain --eval --agents ssh id_nos`
 fi
+
+setxkbmap -option ctrl:nocaps
 
 
