@@ -152,6 +152,7 @@ gpf () {
 }
 alias gff="git pull --ff-only origin"
 alias gpr="git pull --rebase origin"
+alias core-proxy="oc -n nos-core port-forward svc/prod-proxy-core 8888:8080"
 
 # Put the line below in ~/.zshrc:
 #
