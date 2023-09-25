@@ -181,6 +181,3 @@ if command -v keychain >/dev/null 2>&1; then
     eval `keychain --eval --agents ssh id_nos`
 fi
 
-setxkbmap -option ctrl:nocaps
-
-
