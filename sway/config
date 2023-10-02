@@ -69,6 +69,7 @@ output $laptop scale 1.5
 input type:touchpad {
     # tap enabled
     natural_scroll enabled
+    click_method clickfinger
     scroll_method two_finger
     scroll_factor 0.5
     tap_button_map lrm
