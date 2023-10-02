@@ -25,4 +25,4 @@ ln -sf ~/.dotfiles/polybar/ .config/
 ln -sf ~/.dotfiles/nvim/ .config/
 ln -sf ~/.dotfiles/fish/ .config/
 
-ln -sfT ~/.dotfiles/alacritty/ .config/
+ln -sf ~/.dotfiles/alacritty/ .config/
