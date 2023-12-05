@@ -215,4 +215,4 @@ client.placeholder	    $foreground	$background	$foreground	$color7	    $color7
 # Do not change focus on mouse hover events
 focus_follows_mouse no
 
-exec feh --bg-scale ~/Pictures/Wallpapers/mountain-peaks-clouds-landscape-photography-3840x2160_85597-mm-90.jpg
+exec feh --bg-scale ~/Pictures/Wallpapers/nature1.png
