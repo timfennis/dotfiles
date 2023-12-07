@@ -27,7 +27,7 @@ font Hack Nerd Font 10
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "*" bg /home/tim/Pictures/Wallpapers/mountain-peaks-clouds-landscape-photography-3840x2160_85597-mm-90.jpg fill
+output "*" bg /home/tim/Pictures/Wallpapers/lowpolyshark.webp fill
 
 #
 # Example configuration:
@@ -38,6 +38,7 @@ output "*" bg /home/tim/Pictures/Wallpapers/mountain-peaks-clouds-landscape-phot
 
 set $laptop eDP-1
 output $laptop scale 1.5
+output DP-2 scale 2
 
 ### Idle configuration
 #
@@ -80,6 +81,11 @@ input type:keyboard {
     xkb_options caps:none
 }
 
+input "1133:49257:Logitech_USB_Laser_Mouse" {
+    accel_profile "flat"
+    pointer_accel -0.1
+}
+
 ### Key bindings
 #
 # Basics:
@@ -104,14 +110,14 @@ input type:keyboard {
     # mouse button for draggin.
     floating_modifier $mod normal
 
-    # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-    # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-    # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-    # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+    bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+    bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+    bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
     bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
     bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 
-    bindsym $mod+Shift+s exec flameshot gui
+    bindsym $mod+Shift+s exec XDG_CURRENT_DESKTOP=sway flameshot gui
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
