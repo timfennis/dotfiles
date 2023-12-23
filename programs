@@ -1,0 +1,24 @@
+pacman -Syu --needed \
+  base-devel \
+  firefox \
+  jack2 \
+  git \
+  openssh \
+  neovim \
+  sway swaylock swaybg i3status \
+  sddm weston qt5-wayland xorg-xwayland \
+  seatd \
+  noto-fonts \
+    noto-fonts-emoji \
+    ttf-baekmuk \
+    ttf-dejavu \
+    ttf-font-awesome \
+    ttf-hack \
+    ttf-hack-nerd \
+    ttf-liberation \
+    ttf-liberation \
+  fuzzel \
+  fish alacritty \
+  rustup \
+  brightnessctl
+

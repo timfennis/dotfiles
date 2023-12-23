@@ -27,7 +27,7 @@ font Hack Nerd Font 10
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "*" bg /home/tim/Pictures/Wallpapers/lowpolyshark.webp fill
+# output "*" bg /home/tim/Pictures/Wallpapers/lowpolyshark.webp fill
 
 #
 # Example configuration:
@@ -95,7 +95,7 @@ input "1133:49257:Logitech_USB_Laser_Mouse" {
     bindswitch --reload --locked lid:off output $laptop enable
 
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term -e fish
 
     # Kill focused window
     bindsym $mod+Shift+q kill
