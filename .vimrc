@@ -11,6 +11,8 @@ set ideajoin
 set clipboard+=unnamedplus
 set clipboard^=ideaput
 
+nmap gu :action GotoDeclaration<CR>
+
 ; Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
 set NERDTree
