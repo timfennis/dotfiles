@@ -4,7 +4,7 @@ endif
 
 syntax case match
 
-syntax keyword Keyword print if else fn while
+syntax keyword Keyword if else fn while for return in
 syn match Number "[0-9]\+"
 syn match Operator "(:=)\|[:+-/^%!*=]\+"
 syn region String start='"' end ='"' 
