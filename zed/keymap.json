@@ -15,8 +15,8 @@
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-d": ["editor::MoveDownByLines", { "lines": 20 }],
-      "ctrl-u": ["editor::MoveUpByLines", { "lines": 20 }]
+      "ctrl-u": ["workspace::SendKeystrokes", "1 5 k z z"],
+      "ctrl-d": ["workspace::SendKeystrokes", "1 5 j z z"]
     }
   }
 ]
