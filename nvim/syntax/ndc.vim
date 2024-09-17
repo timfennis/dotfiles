@@ -7,7 +7,7 @@ syntax case match
 syntax keyword Keyword if else fn while for return in not and or break
 syn keyword Function read_file print
 syn match Number "\<[0-9]\+\>\|\<[0-9][0-9_]\+\|true\|false\>"
-syn match Operator ":=\|[:+-/^%!*=]\+"
+syn match Operator ":=\|[:+-/^%!*=<>]\+"
 syn match ndcEmbedded /\\[\\"'ntbrf]/ contained
 syn match ndcEmbedded /\\'/ contained
 hi def link noulithEmbedded Identifier
