@@ -18,5 +18,11 @@
       "ctrl-u": ["workspace::SendKeystrokes", "1 5 k z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "1 5 j z z"]
     }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "g u": "editor::FindAllReferences"
+    }
   }
 ]

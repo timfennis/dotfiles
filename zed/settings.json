@@ -26,6 +26,8 @@
     "enabled": true
   },
   "terminal": {
-    "shell": { "program": "/usr/bin/fish" }
+    "shell": {
+      "program": "/usr/bin/fish"
+    }
   },
 }

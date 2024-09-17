@@ -83,8 +83,8 @@ input type:keyboard {
 }
 
 input type:pointer {
-    accel_profile "flat"
-    pointer_accel -0.1
+     accel_profile "flat"
+     pointer_accel -0.1
 }
 
 ### Key bindings
