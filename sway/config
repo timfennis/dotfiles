@@ -37,7 +37,7 @@ output "*" bg /home/tim/.wallpaper.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 set $laptop eDP-1
-output $laptop scale 1
+output $laptop scale 1.5
 # output DP-2 scale 2
 output DP-1 mode 2560x1440@74.780Hz
 
@@ -259,6 +259,7 @@ for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disa
 include /etc/sway/config.d/*
 exec ffplay -nodisp -autoexit .win95.mp3
 
+exec /home/tim/.cargo/bin/activate-linux
 
 # Enable this again if it is needed
 # exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
