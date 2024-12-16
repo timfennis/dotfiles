@@ -4,7 +4,7 @@ endif
 
 syntax case match
 
-syntax keyword Keyword if else fn while for return in not and or break let continue
+syntax keyword Keyword if else fn while for return in not and or break let continue pure
 syn keyword Function read_file print
 syn match Number "\<[0-9]\+\>\|\<[0-9][0-9_]\+\|true\|false\>"
 syn match Operator ":=\|[:+-/^%!*=<>]\+"
