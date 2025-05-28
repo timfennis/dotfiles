@@ -1,5 +1,5 @@
 function oc-login
-    set env prod # default
+    set env prod
 
     if count $argv >/dev/null
         set env $argv[1]

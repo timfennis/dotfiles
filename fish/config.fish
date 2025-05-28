@@ -9,3 +9,10 @@ if status is-interactive
         zoxide init --cmd j fish | source
     end
 end
+abbr -a -- g git
+abbr -a -- k kubectl
+abbr -a -- c cargo
+abbr -a -- dc docker compose
+
+# Curl headers
+abbr -a -- ch curl -D - -o /dev/null -s
