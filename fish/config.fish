@@ -9,10 +9,23 @@ if status is-interactive
         zoxide init --cmd j fish | source
     end
 end
-abbr -a -- g git
+
+# Abbreviations
 abbr -a -- k kubectl
 abbr -a -- c cargo
 abbr -a -- dc docker compose
 
-# Curl headers
+# Curl
 abbr -a -- ch curl -D - -o /dev/null -s
+abbr --add cj --set-cursor "curl -s % | jq -C | less -x4FRs"
+
+# Git
+abbr -a -- g git
+
+function current_branch
+    set branch (git branch --show-current 2>/dev/null) && echo "$branch"
+end
+
+abbr --command git cc --function current_branch
+
+abbr -a -- gff git pull --ff-only origin
