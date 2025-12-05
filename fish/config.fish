@@ -26,6 +26,6 @@ function current_branch
     set branch (git branch --show-current 2>/dev/null) && echo "$branch"
 end
 
-abbr --command git cc --function current_branch
+abbr --command git cb --function current_branch
 
 abbr -a -- gff git pull --ff-only origin

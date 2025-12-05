@@ -73,7 +73,9 @@ input type:touchpad {
     natural_scroll enabled
     click_method clickfinger
     scroll_method two_finger
-    scroll_factor 0.5
+    scroll_factor 0.3
+    # accel_profile adaptive
+    # pointer_accel -0.3
     tap_button_map lrm
 }
 
@@ -259,6 +261,11 @@ for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disa
 
 include /etc/sway/config.d/*
 exec ffplay -nodisp -autoexit .win95.mp3
+bindsym Print exec ffplay -nodisp -autoexit .config/sway/vine-boom-sound-meme.mp3
+bindsym Shift+Print exec ffplay -nodisp -autoexit .config/sway/metal-pipe-sound-meme.mp3
+bindsym Ctrl+Print exec ffplay -nodisp -autoexit .config/sway/among-us-role-reveal-sound.mp3
+bindsym Alt+Print exec ffplay -nodisp -autoexit .config/sway/idle2.mp3
+
 
 exec /home/tim/.cargo/bin/activate-linux
 
