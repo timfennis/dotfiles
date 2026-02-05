@@ -27,7 +27,7 @@ font Hack Nerd Font 10
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "*" bg /home/tim/.wallpaper.jpg fill
+# output "*" bg /home/tim/.wallpaper.jpg fill
 
 #
 # Example configuration:
@@ -259,6 +259,9 @@ bar {
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 
+for_window [class="jetbrains-*" title="History for Selection"] floating enable
+
+
 include /etc/sway/config.d/*
 exec ffplay -nodisp -autoexit .win95.mp3
 bindsym Print exec ffplay -nodisp -autoexit .config/sway/vine-boom-sound-meme.mp3
@@ -268,6 +271,7 @@ bindsym Alt+Print exec ffplay -nodisp -autoexit .config/sway/idle2.mp3
 
 
 exec /home/tim/.cargo/bin/activate-linux
+exec mako
 
 # Enable this again if it is needed
 # exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

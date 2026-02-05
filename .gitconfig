@@ -1,0 +1,6 @@
+[user]
+  name = Tim Fennis
+  email = fennis.tim@gmail.com
+
+[includeIf "gitdir:/home/tim/Projects/nos/"]
+  path = /hoem/tim/Projects/nos/.gitconfig

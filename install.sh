@@ -12,17 +12,22 @@ echo -e "Switching to ${bold}${HOME}${reset}."
 cd "$HOME"
 
 # Symlink some config files that just live directly inside our home directory
-ln -sf ~/.dotfiles/.zshrc .zshrc
+# ln -sf ~/.dotfiles/.zshrc .zshrc
 ln -sf ~/.dotfiles/.vimrc .vimrc
 ln -sf ~/.dotfiles/.vimrc .ideavimrc
-ln -sf ~/.dotfiles/.Xresources .Xresources
+# ln -sf ~/.dotfiles/.Xresources .Xresources
 
 # Programs that use a directory inside .config are linked a directory usually because
 # their configuration requires multiple files
 mkdir -p .config/
-ln -sf ~/.dotfiles/i3/ .config/
-ln -sf ~/.dotfiles/polybar/ .config/
+# ln -sf ~/.dotfiles/i3/ .config/
+# ln -sf ~/.dotfiles/polybar/ .config/
 ln -sf ~/.dotfiles/nvim/ .config/
 ln -sf ~/.dotfiles/fish/ .config/
-
 ln -sf ~/.dotfiles/alacritty/ .config/
+ln -sf ~/.dotfiles/sway/ .config/
+ln -sf ~/.dotfiles/fuzzel/ .config/
+ln -sf ~/.dotfiles/i3status/ .config/
+ln -sf ~/.dotfiles/mako/ .config/
+ln -sf ~/.dotfiles/starship.toml .config/
+ln -sf ~/.dotfiles/gitignore.dist .gitignore
