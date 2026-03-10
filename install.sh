@@ -17,7 +17,7 @@ link() {
         return
     fi
 
-    ln -sf "$src" "$dest"
+    ln -sfn "$src" "$dest"
     echo -e "  ${green}Linked${reset} $1 -> $dest"
 }
 
