@@ -1,33 +1,57 @@
-#!/bin/sh
-set -e
+#!/bin/bash
+set -euo pipefail
 
-# ANSI escape sequences for text formatting
-green_bold="\e[1;32m"
-red_bold="\e[1;31m"
+green="\e[1;32m"
+yellow="\e[1;33m"
 bold="\e[1m"
 reset="\e[0m"
 
-# Switch to our user's $HOME directory as a base for creating the various symlinks
-echo -e "Switching to ${bold}${HOME}${reset}."
-cd "$HOME"
+dotfiles="$HOME/.dotfiles"
+config="$HOME/.config"
 
-# Symlink some config files that just live directly inside our home directory
-# ln -sf ~/.dotfiles/.zshrc .zshrc
-ln -sf ~/.dotfiles/.vimrc .vimrc
-ln -sf ~/.dotfiles/.vimrc .ideavimrc
-# ln -sf ~/.dotfiles/.Xresources .Xresources
+link() {
+    local src="$dotfiles/$1"
+    local dest="$2"
 
-# Programs that use a directory inside .config are linked a directory usually because
-# their configuration requires multiple files
-mkdir -p .config/
-# ln -sf ~/.dotfiles/i3/ .config/
-# ln -sf ~/.dotfiles/polybar/ .config/
-ln -sf ~/.dotfiles/nvim/ .config/
-ln -sf ~/.dotfiles/fish/ .config/
-ln -sf ~/.dotfiles/alacritty/ .config/
-ln -sf ~/.dotfiles/sway/ .config/
-ln -sf ~/.dotfiles/fuzzel/ .config/
-ln -sf ~/.dotfiles/i3status/ .config/
-ln -sf ~/.dotfiles/mako/ .config/
-ln -sf ~/.dotfiles/starship.toml .config/
-ln -sf ~/.dotfiles/gitignore.dist .gitignore
+    if [ ! -e "$src" ]; then
+        return
+    fi
+
+    ln -sf "$src" "$dest"
+    echo -e "  ${green}Linked${reset} $1 -> $dest"
+}
+
+link_if_installed() {
+    local cmd="$1"
+    local dir="$2"
+
+    if ! command -v "$cmd" &>/dev/null; then
+        echo -e "  ${yellow}Skipped${reset} $dir ($cmd not found)"
+        return
+    fi
+
+    link "$dir" "$config/$dir"
+}
+
+echo -e "${bold}Installing dotfiles from ${dotfiles}${reset}\n"
+
+# Home directory dotfiles
+link .vimrc "$HOME/.vimrc"
+link .vimrc "$HOME/.ideavimrc"
+link gitignore.dist "$HOME/.gitignore"
+
+# .config directories — only linked if the program is installed
+mkdir -p "$config"
+
+link_if_installed i3       i3
+link_if_installed i3status i3status
+link_if_installed polybar  polybar
+link_if_installed nvim     nvim
+link_if_installed fish     fish
+link_if_installed alacritty alacritty
+link_if_installed sway     sway
+link_if_installed fuzzel   fuzzel
+link_if_installed mako     mako
+link_if_installed starship starship.toml
+
+echo -e "\n${green}${bold}Done!${reset}"

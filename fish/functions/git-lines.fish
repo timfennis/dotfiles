@@ -26,5 +26,6 @@ function git-lines
     end
 
     # Blame and count authors
-    printf '%s\n' $files | xargs -d '\n' -n 1 git blame --line-porcelain | grep "^author " 2>/dev/null | sed 's/^author //' | sort | uniq -c | sort -nr | awk '{printf "%s: %s lines\n", $2, $1}'
+    printf '%s\n' $files | xargs -d '\n' -n 1 git blame --line-porcelain | grep "^author " 2>/dev/null | sed 's/^author //' | sort | uniq -c | sort -nr | awk '{printf "%s: %s lines\n", substr($0, index($0,$2)), $1}'
+
 end
