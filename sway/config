@@ -29,6 +29,9 @@ font Hack Nerd Font 10
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output "*" bg /home/tim/.wallpaper.jpg fill
 
+exec_always swaybg -i "$(find /usr/share/backgrounds/archlinux -type f | shuf -n 1)" -m fill
+
+#
 #
 # Example configuration:
 #

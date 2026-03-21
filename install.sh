@@ -53,5 +53,6 @@ link_if_installed sway     sway
 link_if_installed fuzzel   fuzzel
 link_if_installed mako     mako
 link_if_installed starship starship.toml
+link_if_installed tmux     tmux
 
 echo -e "\n${green}${bold}Done!${reset}"

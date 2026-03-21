@@ -7,11 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  "agent_servers": {
-    "claude-acp": {
-      "type": "registry"
-    }
-  },
   "telemetry": {
     "diagnostics": true,
     "metrics": false
@@ -22,7 +17,7 @@
   },
   "autosave": "on_focus_change",
   "vim_mode": true,
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": true,
   "ui_font_size": 16,
   "buffer_font_size": 14,
   "buffer_font_family": "Hack",
