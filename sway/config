@@ -249,12 +249,12 @@ bar {
     status_command i3status
     colors {
         background #161616
-        statusline #f2f4f8
+        statusline #b6b8bb
         separator  #525253
 
         focused_workspace  #78a9ff #78a9ff #161616
         active_workspace   #353535 #353535 #f2f4f8
-        inactive_workspace #161616 #161616 #525253
+        inactive_workspace #161616 #161616 #b6b8bb
         urgent_workspace   #ee5396 #ee5396 #f2f4f8
         binding_mode       #be95ff #be95ff #161616
     }
