@@ -33,3 +33,6 @@ abbr --command git o origin
 
 alias php='docker run --rm -it -u (id -u):(id -g) -v (pwd):/app -w /app php:8.5-cli php'
 alias composer='docker run --rm -it -u (id -u):(id -g) -v (pwd):/app -w /app -e COMPOSER_HOME=/tmp composer:2 composer'
+
+alias docs='gocryptfs ~/Documents/Enc ~/Documents/Dec'
+alias undocs='fusermount -u ~/Documents/Dec'
