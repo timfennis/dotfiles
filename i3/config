@@ -184,33 +184,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set_from_resource	$background	background
-set_from_resource	$foreground	foreground
-set_from_resource	$color0		color0
-set_from_resource 	$color1 	color1
-set_from_resource 	$color2 	color2
-set_from_resource 	$color3 	color3
-set_from_resource 	$color4 	color4
-set_from_resource 	$color5 	color5
-set_from_resource 	$color6		color6
-set_from_resource	$color7		color7
-set_from_resource	$color8		color8
-set_from_resource	$color9		color9
-set_from_resource	$color10	color10
-set_from_resource	$color11	color11
-set_from_resource	$color12	color12
-set_from_resource	$color13	color13
-set_from_resource	$color14	color14
-set_from_resource	$color15	color15
-
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border      BG          Text        Indicator   Child Border
-client.background	    $background
-client.focused         	$foreground	$color12    $background	$color15	$color12
-client.unfocused       	$foreground	$background	$foreground	$color7	    $color7
-client.focused_inactive	$foreground	$background	$foreground	$color7	    $color7
-client.urgent		    $foreground	$background	$foreground	$color7	    $color7
-client.placeholder	    $foreground	$background	$foreground	$color7	    $color7
+# Carbonfox color scheme
+# Property Name         Border  BG      Text    Indicator Child Border
+client.background       #161616
+client.focused          #282828 #78a9ff #161616 #33b1ff   #78a9ff
+client.unfocused        #282828 #161616 #525253 #282828   #282828
+client.focused_inactive #282828 #353535 #b6b8bb #484848   #353535
+client.urgent           #282828 #ee5396 #f2f4f8 #ee5396   #ee5396
+client.placeholder      #161616 #161616 #525253 #161616   #161616
 
 # Do not change focus on mouse hover events
 focus_follows_mouse no
