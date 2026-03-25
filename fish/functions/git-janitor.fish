@@ -49,7 +49,11 @@ function git-janitor -d "Clean up stale local branches"
     set -l stale
     set -l fresh
     for branch in $remaining
-        set -l epoch (git log -1 --format='%ct' $branch)
+        set -l epoch (git log -1 --format='%ct' $branch 2>/dev/null)
+        if test -z "$epoch"
+            set -a stale $branch
+            continue
+        end
         if test $epoch -lt $cutoff_epoch
             set -a stale $branch
         else
