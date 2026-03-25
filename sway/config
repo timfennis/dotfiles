@@ -127,7 +127,7 @@ input type:pointer {
     bindsym $mod+Shift+s exec XDG_CURRENT_DESKTOP=sway flameshot gui
 
     # Rename current workspace
-    bindsym $mod+n exec swaymsg rename workspace to "$(swaymsg -t get_workspaces | jq -r '.. | select(.focused? == true) | .num'):$(fuzzel --dmenu --prompt='Rename workspace: ' < /dev/null)"
+    bindsym $mod+n exec swaymsg rename workspace to "$(swaymsg -t get_workspaces | jq -r '.. | select(.focused? == true) | .num'):$(fuzzel --dmenu --lines=0 --width=25 --prompt='Rename workspace: ' < /dev/null)"
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
