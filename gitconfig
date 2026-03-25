@@ -1,0 +1,30 @@
+[user]
+	email = fennis.tim@gmail.com
+	name = Tim Fennis
+	signingkey = /home/tim/.ssh/id_nos.pub
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[core]
+	editor = nvim
+	excludesFIle = ~/.gitignore
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
+[maintenance]
+	repo = /home/tim/Projects/nos/nos-core
+[mergetool]
+	keepBackup = false
+[rerere]
+	enabled = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[alias]
+	sync-force = "!f() { branch=$(git branch --show-current); git fetch origin \"$branch\" && git reset --hard \"origin/$branch\"; }; f"

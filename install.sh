@@ -39,6 +39,7 @@ echo -e "${bold}Installing dotfiles from ${dotfiles}${reset}\n"
 link .vimrc "$HOME/.vimrc"
 link .vimrc "$HOME/.ideavimrc"
 link gitignore.dist "$HOME/.gitignore"
+link gitconfig "$HOME/.gitconfig"
 
 # .config directories — only linked if the program is installed
 mkdir -p "$config"
@@ -48,11 +49,17 @@ link_if_installed i3status i3status
 link_if_installed polybar  polybar
 link_if_installed nvim     nvim
 link_if_installed fish     fish
+
+if command -v fish &>/dev/null; then
+    echo -e "  ${green}Installing${reset} fish plugins (fisher update)"
+    fish -c "fisher update" 2>/dev/null || true
+fi
 link_if_installed alacritty alacritty
 link_if_installed sway     sway
 link_if_installed fuzzel   fuzzel
 link_if_installed mako     mako
 link_if_installed starship starship.toml
 link_if_installed tmux     tmux
+link_if_installed glow     glow
 
 echo -e "\n${green}${bold}Done!${reset}"

@@ -1,2 +1,6 @@
 [
+  {
+    "label": "test all",
+    "command": "cargo test",
+  },
 ]
