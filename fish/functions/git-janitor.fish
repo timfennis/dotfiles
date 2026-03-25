@@ -11,7 +11,7 @@ function git-janitor -d "Clean up stale local branches"
     git fetch --prune
 
     # Phase 1: delete branches that are merged into the main branch
-    set -l merged (git branch --merged $main_branch | string trim | string match -v "$current_branch" | string match -v "$main_branch")
+    set -l merged (git branch --merged $main_branch --format='%(refname:short)' | string match -v "$current_branch" | string match -v "$main_branch")
 
     if test (count $merged) -gt 0
         echo ""
@@ -24,7 +24,7 @@ function git-janitor -d "Clean up stale local branches"
     end
 
     # Phase 2: delete remaining branches older than a cutoff
-    set -l remaining (git branch | string trim | string match -v "$current_branch" | string match -v "$main_branch")
+    set -l remaining (git branch --format='%(refname:short)' | string match -v "$current_branch" | string match -v "$main_branch")
 
     if test (count $remaining) -eq 0
         echo "No remaining branches to review."
