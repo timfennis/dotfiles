@@ -31,6 +31,27 @@ font Hack Nerd Font 10
 
 set $wallpapers $HOME/.config/sway/wallpapers
 exec_always pkill swaybg; swaybg -i "$(shuf -n 1 $wallpapers)" -m fill
+input type:touchpad {
+
+    # tap enabled
+    natural_scroll enabled
+    click_method clickfinger
+    scroll_method two_finger
+    scroll_factor 0.3
+    # accel_profile adaptive
+    # pointer_accel -0.3
+    tap_button_map lrm
+}
+
+input type:keyboard {
+    # Disable caps lock because it's PEAK cringe
+    xkb_options caps:none
+}
+
+input type:pointer {
+     accel_profile "flat"
+     pointer_accel -0.1
+}
 
 #
 #
@@ -38,12 +59,9 @@ exec_always pkill swaybg; swaybg -i "$(shuf -n 1 $wallpapers)" -m fill
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-set $laptop eDP-1
-output $laptop scale 1.5
-# output DP-2 scale 2
-output DP-1 mode 2560x1440@74.780Hz
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+include ~/.config/sway/host.conf
 
 ### Idle configuration
 #
@@ -72,37 +90,13 @@ output DP-1 mode 2560x1440@74.780Hz
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input type:touchpad {
-    # tap enabled
-    natural_scroll enabled
-    click_method clickfinger
-    scroll_method two_finger
-    scroll_factor 0.3
-    # accel_profile adaptive
-    # pointer_accel -0.3
-    tap_button_map lrm
-}
-
-input type:keyboard {
-    # Disable caps lock because it's PEAK cringe
-    xkb_options caps:none
-}
-
-input type:pointer {
-     accel_profile "flat"
-     pointer_accel -0.1
-}
-
 ### Key bindings
 #
 # Basics:
 #
-    # Disable laptop output if screen is closed
-    bindswitch --reload --locked lid:on output $laptop disable
-    bindswitch --reload --locked lid:off output $laptop enable
-
     # Start a terminal
-    bindsym $mod+Return exec $term -e fish
+    bindsym $mod+Return exec $term -e tmux new-session -A -s main
+    bindsym $mod+Shift+Return exec $term --class floating-terminal -e tmux new-session -A -s main
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -178,6 +172,9 @@ input type:pointer {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+assign [app_id="Slack"] workspace number 2:slack
+assign [class="Slack"] workspace number 2:slack
 #
 # Layout stuff:
 #
@@ -261,6 +258,7 @@ bar {
 }
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [app_id="floating-terminal"] floating enable
 
 for_window [class="jetbrains-*" title="History for Selection"] floating enable
 
@@ -272,8 +270,7 @@ bindsym Shift+Print exec ffplay -nodisp -autoexit .config/sway/metal-pipe-sound-
 bindsym Ctrl+Print exec ffplay -nodisp -autoexit .config/sway/among-us-role-reveal-sound.mp3
 bindsym Alt+Print exec ffplay -nodisp -autoexit .config/sway/idle2.mp3
 
-
-exec /home/tim/.cargo/bin/activate-linux
+# exec /home/tim/.cargo/bin/activate-linux
 exec mako
 
 # Enable this again if it is needed

@@ -33,6 +33,28 @@ link_if_installed() {
     link "$dir" "$config/$dir"
 }
 
+link_sway_host_config() {
+    local sway_config_dir="$config/sway"
+    local hostname
+    local host_config
+
+    if [ -r /etc/hostname ]; then
+        hostname="$(tr -d '[:space:]' < /etc/hostname)"
+    else
+        hostname="$(hostname)"
+    fi
+
+    if [ "$hostname" = "desktop-tim" ]; then
+        host_config="desktop.conf"
+    else
+        host_config="framework.conf"
+    fi
+
+    mkdir -p "$sway_config_dir"
+    ln -sfn "$dotfiles/sway/$host_config" "$sway_config_dir/host.conf"
+    echo -e "  ${green}Linked${reset} sway/$host_config -> $sway_config_dir/host.conf"
+}
+
 echo -e "${bold}Installing dotfiles from ${dotfiles}${reset}\n"
 
 # Home directory dotfiles
@@ -56,6 +78,9 @@ if command -v fish &>/dev/null; then
 fi
 link_if_installed alacritty alacritty
 link_if_installed sway     sway
+if command -v sway &>/dev/null; then
+    link_sway_host_config
+fi
 link_if_installed fuzzel   fuzzel
 link_if_installed mako     mako
 link_if_installed starship starship.toml
