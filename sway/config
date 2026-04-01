@@ -243,7 +243,7 @@ client.background       #161616
 
 bar {
     position bottom
-    status_command i3status
+    status_command /home/tim/.cargo/bin/bartender
     colors {
         background #161616
         statusline #b6b8bb
@@ -255,6 +255,7 @@ bar {
         urgent_workspace   #ee5396 #ee5396 #f2f4f8
         binding_mode       #be95ff #be95ff #161616
     }
+    height 30
 }
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0

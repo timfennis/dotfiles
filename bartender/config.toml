@@ -1,0 +1,15 @@
+[style]
+separator_block_width = 16
+
+[icons]
+theme = "nerdfont"
+
+[[block]]
+type = "battery"
+enabled = true
+
+[[block]]
+type = "clock"
+format = "%Y-%m-%d %H:%M:%S"
+interval_seconds = 1
+

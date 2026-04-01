@@ -119,6 +119,7 @@ else
 fi
 link_if_installed fuzzel   fuzzel
 link_if_installed mako     mako
+link_if_installed bartender bartender
 link_if_installed starship starship.toml
 link_if_installed tmux     tmux
 link_if_installed glow     glow
