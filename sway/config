@@ -95,8 +95,8 @@ include ~/.config/sway/host.conf
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term -e tmux new-session -A -s main
-    bindsym $mod+Shift+Return exec $term --class floating-terminal -e tmux new-session -A -s main
+    bindsym $mod+Return exec $term -e tmux new-session
+    bindsym $mod+Shift+Return exec $term --class floating-terminal -e tmux new-session
 
     # Kill focused window
     bindsym $mod+Shift+q kill

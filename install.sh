@@ -33,6 +33,29 @@ link_if_installed() {
     link "$dir" "$config/$dir"
 }
 
+link_sway_files() {
+    local sway_config_dir="$config/sway"
+    local src
+    local name
+
+    mkdir -p "$sway_config_dir"
+
+    for src in "$dotfiles"/sway/*; do
+        [ -e "$src" ] || continue
+
+        name="$(basename "$src")"
+
+        case "$name" in
+            desktop.conf|framework.conf|host.conf)
+                continue
+                ;;
+        esac
+
+        ln -sfn "$src" "$sway_config_dir/$name"
+        echo -e "  ${green}Linked${reset} sway/$name -> $sway_config_dir/$name"
+    done
+}
+
 link_sway_host_config() {
     local sway_config_dir="$config/sway"
     local hostname
@@ -77,9 +100,11 @@ if command -v fish &>/dev/null; then
     fish -c "fisher update" 2>/dev/null || true
 fi
 link_if_installed alacritty alacritty
-link_if_installed sway     sway
 if command -v sway &>/dev/null; then
+    link_sway_files
     link_sway_host_config
+else
+    echo -e "  ${yellow}Skipped${reset} sway (sway not found)"
 fi
 link_if_installed fuzzel   fuzzel
 link_if_installed mako     mako
