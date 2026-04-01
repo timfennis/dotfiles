@@ -33,12 +33,23 @@ link_if_installed() {
     link "$dir" "$config/$dir"
 }
 
+ensure_real_dir() {
+    local dir="$1"
+
+    if [ -L "$dir" ]; then
+        rm "$dir"
+        echo -e "  ${green}Removed${reset} legacy symlink $dir"
+    fi
+
+    mkdir -p "$dir"
+}
+
 link_sway_files() {
     local sway_config_dir="$config/sway"
     local src
     local name
 
-    mkdir -p "$sway_config_dir"
+    ensure_real_dir "$sway_config_dir"
 
     for src in "$dotfiles"/sway/*; do
         [ -e "$src" ] || continue
@@ -73,7 +84,7 @@ link_sway_host_config() {
         host_config="framework.conf"
     fi
 
-    mkdir -p "$sway_config_dir"
+    ensure_real_dir "$sway_config_dir"
     ln -sfn "$dotfiles/sway/$host_config" "$sway_config_dir/host.conf"
     echo -e "  ${green}Linked${reset} sway/$host_config -> $sway_config_dir/host.conf"
 }
