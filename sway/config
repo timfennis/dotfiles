@@ -21,7 +21,7 @@ focus_follows_mouse no
 default_border pixel 4
 
 # Use the pretty hack font
-font Hack Nerd Font 10
+# font Hack Nerd Font 10
 
 ### Output configuration
 #
@@ -173,8 +173,8 @@ include ~/.config/sway/host.conf
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
-assign [app_id="Slack"] workspace number 2:slack
-assign [class="Slack"] workspace number 2:slack
+assign [app_id="Slack"] workspace 2:slack
+assign [class="Slack"] workspace 2:slack
 #
 # Layout stuff:
 #
@@ -243,6 +243,7 @@ client.background       #161616
 
 bar {
     position bottom
+    font pango:DejaVu Sans Mono, FontAwesome 10
     status_command /home/tim/.cargo/bin/bartender
     colors {
         background #161616

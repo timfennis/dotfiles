@@ -10,6 +10,41 @@ if status is-interactive
     end
 end
 
+function __sync_tmux_session_env --description "Refresh GUI/session vars from tmux when attached"
+    if not set -q TMUX
+        return
+    end
+
+    if not command -sq tmux
+        return
+    end
+
+    for var in DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE SSH_AUTH_SOCK
+        set -l value (tmux show-environment -gqv $var 2>/dev/null)
+        if test -n "$value"
+            set -gx $var $value
+        end
+    end
+
+    if set -q XDG_RUNTIME_DIR; and set -q UID
+        if not set -q SWAYSOCK; or test -z "$SWAYSOCK"; or not test -S "$SWAYSOCK"
+            set -l live_swaysock (ls -t $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock 2>/dev/null | head -n 1)
+            if test -n "$live_swaysock"
+                set -gx SWAYSOCK $live_swaysock
+                tmux set-environment -g SWAYSOCK "$live_swaysock" >/dev/null 2>&1
+            end
+        end
+    end
+end
+
+function __sync_tmux_session_env_preexec --on-event fish_preexec
+    __sync_tmux_session_env
+end
+
+if status is-interactive
+    __sync_tmux_session_env
+end
+
 # Abbreviations
 abbr -a -- k kubectl
 abbr -a -- c cargo

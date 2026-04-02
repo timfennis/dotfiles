@@ -5,8 +5,10 @@ separator_block_width = 16
 theme = "nerdfont"
 
 [[block]]
+type = "memory"
+
+[[block]]
 type = "battery"
-enabled = true
 
 [[block]]
 type = "clock"
