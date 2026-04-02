@@ -245,6 +245,7 @@ bar {
     position bottom
     font pango:DejaVu Sans Mono, FontAwesome 10
     status_command /home/tim/.cargo/bin/bartender
+    tray_padding 6
     colors {
         background #161616
         statusline #b6b8bb

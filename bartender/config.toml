@@ -5,6 +5,12 @@ separator_block_width = 16
 theme = "nerdfont"
 
 [[block]]
+type = "github"
+organization = "nos-digital"
+token_file = "/home/tim/.config/bartender/github-token"
+interval_seconds = 60
+
+[[block]]
 type = "memory"
 
 [[block]]
@@ -13,5 +19,4 @@ type = "battery"
 [[block]]
 type = "clock"
 format = "%Y-%m-%d %H:%M:%S"
-interval_seconds = 1
 
