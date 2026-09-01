@@ -5,6 +5,10 @@ separator_block_width = 16
 theme = "nerdfont"
 
 [[block]]
+type = "wifi"
+interval_seconds = 60
+
+[[block]]
 type = "github"
 organization = "nos-digital"
 token_file = "/home/tim/.config/bartender/github-token"

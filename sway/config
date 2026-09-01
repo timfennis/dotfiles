@@ -30,10 +30,10 @@ default_border pixel 4
 # output "*" bg /home/tim/.wallpaper.jpg fill
 
 set $wallpapers $HOME/.config/sway/wallpapers
-exec_always pkill swaybg; swaybg -i "$(shuf -n 1 $wallpapers)" -m fill
+exec_always swaymsg output "*" bg "$(shuf -n 1 $wallpapers)" fill
 input type:touchpad {
 
-    # tap enabled
+    tap enabled
     natural_scroll enabled
     click_method clickfinger
     scroll_method two_finger
