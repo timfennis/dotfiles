@@ -1,6 +1,9 @@
 # Nightfox Alacritty Colors
 ## name: carbonfox
 ## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/carbonfox/alacritty.toml
+# ~/.config/alacritty/alacritty.toml
+# [font]
+# normal = { family = "Sarasa Term SC" }
 
 [colors.primary]
 background = "#161616"
