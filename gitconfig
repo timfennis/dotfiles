@@ -28,3 +28,5 @@
 	helper = !/usr/bin/gh auth git-credential
 [alias]
 	sync-force = "!f() { branch=$(git branch --show-current); git fetch origin \"$branch\" && git reset --hard \"origin/$branch\"; }; f"
+[includeIf "gitdir:~/Projects/nos/"]
+	path = /home/tim/Projects/nos/.gitconfig
