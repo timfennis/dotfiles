@@ -1,0 +1,3 @@
+[submodule "nvim/pack/plugins/start/blink.cmp"]
+	path = nvim/pack/plugins/start/blink.cmp
+	url = https://github.com/saghen/blink.cmp

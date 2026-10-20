@@ -43,22 +43,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Built-in LSP autocomplete: pop up completions as you type, for any server
--- that supports it. Accept with <C-y>, cancel with <C-e>, navigate with
--- <C-n>/<C-p>. Manual trigger is <C-x><C-o>.
---
--- noselect/noinsert: show the menu but don't preselect or auto-insert the first
--- entry — nothing is chosen until you pick it explicitly. The menu follows your
--- typing instead of typing for you.
-vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
-  end,
+-- Completion: blink.cmp (pack/plugins/start/blink.cmp, pinned to a release tag
+-- so it can fetch its prebuilt fuzzy-matcher binary). Unlike the built-in
+-- vim.lsp.completion autotrigger, it pops up while typing plain identifiers,
+-- not just on server trigger characters like `.`.
+-- Accept with <C-y>, cancel with <C-e>, navigate with <C-n>/<C-p>,
+-- manual trigger / docs with <C-space>.
+vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }  -- still used by <C-x> modes
+require("blink.cmp").setup({
+  -- Match the old behaviour: show the menu but don't preselect or auto-insert
+  -- the first entry — nothing is chosen until you pick it explicitly.
+  completion = {
+    list = { selection = { preselect = false, auto_insert = false } },
+  },
 })
+
+-- Show language-server diagnostics inline.
+vim.diagnostic.config({ virtual_text = true })
+
+-- Advertise blink's completion capabilities to every LSP server.
+vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 
 -- ──────────────────────────────────────────────────────────────────────────
 -- Andy C++ (.ndc) support
