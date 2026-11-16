@@ -36,6 +36,11 @@ vim.keymap.set("n", "gu", vim.lsp.buf.definition, { desc = "Go to definition" })
 -- a which-key menu group there, so the real key is the double-q.
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
+-- <C-s> -> save, from normal, insert, visual and select mode (LazyVim's binding).
+-- Ends in normal mode. Replaces Neovim's default insert-mode <C-s> (LSP
+-- signature help).
+vim.keymap.set({ "n", "i", "x", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
 -- Briefly highlight yanked text (built in, no plugin needed).
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -97,5 +102,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client.name == "ndc_lsp" then
       pcall(vim.lsp.inlay_hint.enable, true, { bufnr = args.buf })
     end
+  end,
+})
+
+-- <leader>r runs the buffer (or, in visual mode, the selection) with
+-- `ndc run --eval`, so it doesn't need saving. Output goes to a terminal split
+-- at the bottom that is replaced on each run; focus stays in the code. The
+-- script's stdin is that terminal (<C-w>j then i to type into it, <C-c> to stop).
+local ndc_run_buf
+local function ndc_run(lines)
+  if ndc_run_buf and vim.api.nvim_buf_is_valid(ndc_run_buf) then
+    vim.api.nvim_buf_delete(ndc_run_buf, { force = true })
+  end
+  vim.cmd("botright 15new")
+  ndc_run_buf = vim.api.nvim_get_current_buf()
+  vim.fn.jobstart({ "ndc", "run", "--eval", table.concat(lines, "\n") }, { term = true })
+  vim.cmd.wincmd("p")
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ndc",
+  callback = function(args)
+    vim.keymap.set("n", "<leader>r", function()
+      ndc_run(vim.api.nvim_buf_get_lines(0, 0, -1, false))
+    end, { buffer = args.buf, desc = "Run Andy C++ buffer" })
+    vim.keymap.set("x", "<leader>r", function()
+      ndc_run(vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() }))
+      vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
+    end, { buffer = args.buf, desc = "Run Andy C++ selection" })
   end,
 })
