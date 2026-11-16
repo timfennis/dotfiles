@@ -15,6 +15,9 @@ token_file = "/home/tim/.config/bartender/github-token"
 interval_seconds = 300
 
 [[block]]
+type = "volume"
+
+[[block]]
 type = "memory"
 
 [[block]]
