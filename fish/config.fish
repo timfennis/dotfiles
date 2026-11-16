@@ -8,6 +8,9 @@ if status is-interactive
     if command -sq zoxide
         zoxide init --cmd j fish | source
     end
+    if command -sq eza
+        alias ls=eza
+    end
 end
 
 function __sync_tmux_session_env --description "Refresh GUI/session vars from tmux when attached"
@@ -28,7 +31,7 @@ function __sync_tmux_session_env --description "Refresh GUI/session vars from tm
 
     if set -q XDG_RUNTIME_DIR; and set -q UID
         if not set -q SWAYSOCK; or test -z "$SWAYSOCK"; or not test -S "$SWAYSOCK"
-            set -l live_swaysock (ls -t $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock 2>/dev/null | head -n 1)
+            set -l live_swaysock (command ls -t $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock 2>/dev/null | head -n 1)
             if test -n "$live_swaysock"
                 set -gx SWAYSOCK $live_swaysock
                 tmux set-environment -g SWAYSOCK "$live_swaysock" >/dev/null 2>&1

@@ -19,6 +19,7 @@ pacman -Syu --needed \
     ttf-liberation \
   fuzzel \
   fish alacritty \
+  eza \
   rustup \
   brightnessctl
 
